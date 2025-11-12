@@ -5,7 +5,6 @@ CPSC 2221
 
 - PHP
 - MySQL
-- Python
 
 ## Frontend
 
