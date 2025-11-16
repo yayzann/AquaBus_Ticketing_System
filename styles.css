@@ -1,0 +1,43 @@
+/*Primary colors*/
+:root {
+    --bs-primary: #0ea5e9;
+    --bs-secondary: #0f172a;
+}
+
+body {
+    background: #fbfbfb;
+}
+
+/* hero with boat image in background */
+.hero {
+    position: relative;
+    color: #fff;
+    background-image:
+        linear-gradient(135deg, rgba(14, 165, 233, 0.85), rgba(3, 105, 161, 0.85)),
+        url("images/Aquabus.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.brand-badge {
+    letter-spacing: .02em;
+    font-weight: 700;
+}
+
+.dock-dot {
+    width: .65rem;
+    height: .65rem;
+    display: inline-block;
+    border-radius: 50%;
+    background: var(--bs-primary);
+    margin-right: .35rem;
+}
+
+.table thead th {
+    white-space: nowrap;
+}
+
+.required::after {
+    content: " *";
+    color: #e11d48;
+}
