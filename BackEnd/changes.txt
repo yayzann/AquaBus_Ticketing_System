@@ -1,0 +1,9 @@
+I made a lot of changes in the main page. as you can see it is now php not html. I guess this is the only way to make it change correspondingly with the changes in the database.
+
+so the option is now showing every dock that we have and it will show all available trip by default till you filter it, of course.
+and now i am using the radio button to choose the trip. as it is a form. for the part  where you hit the button and the form appears, i don't think the submit button can hold to function together so i guess we need to find another way
+
+i also make the insert page so we can input the new trip, and same for the message part.  you still need to create the table in database first thou.
+
+ i will add the validation later, it still need adjustment but i am out of idea for now
+
