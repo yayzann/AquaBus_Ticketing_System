@@ -1,0 +1,13 @@
+CREATE TABLE AvailableTrip (
+  TripID INT(11) NOT NULL PRIMARY KEY,
+  BoatName VARCHAR(100) NOT NULL,
+  FromDock VARCHAR(100) NOT NULL,
+  ToDock VARCHAR(100) NOT NULL,
+  Date DATE NOT NULL,
+  DepartTime TIME NOT NULL,
+  ArriveTime TIME NOT NULL,
+  Fare DECIMAL(10,2) NOT NULL
+);
+ use this in sql to create table
+then open insert.html from local host to add any trip in
+open aquabus.php to see how it works
