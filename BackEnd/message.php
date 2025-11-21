@@ -1,28 +1,28 @@
 <?php
 $servername = "localhost";
 $username = "root"; // your username
-$password = "root"; //your password
-$database = "message";
+$password = ""; //your password
+$database = "boattrip";
 $valid = false;
 
-//server site input available trip and display it to user
-// Getting values
-$Name=$_POST["Name"];
-$Email=$_POST["Email"];
-$Message=$_POST["Message"];
 
-// Create connection
+
+$Name=$_POST["name"];
+$Email=$_POST["email"];
+$Message=$_POST["message"];
+
+
 $conn = new mysqli($servername, $username, $password, $database);
-// Check connection
+
 if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 }
 else {
 echo "Connection Succesful! <br>";
 }
-//construct the query
-$query = "INSERT INTO `Message` VALUES('$Name','$Email','$Message')";
-//Execute the query
+
+$query = "INSERT INTO messages (Name, Email, Message) VALUES('$Name','$Email','$Message')";
+
 if ($conn->query($query) === TRUE) {
 echo "New record created successfully!";
 } else {
