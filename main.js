@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let boats = [];
   let trips = [];
 
-  // booking list just to show it works
   const bookings = [];
 
   // elements
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function initializeData() {
     try {
-      const response = await fetch('get_trip.php');
+      const response = await fetch('DisplayTrip.php');
 
       if (!response.ok) {
         throw new Error('HTTP error status: ' + response.status);
@@ -91,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // fare rule: Hornby = 4, The Village = 8 (2 stops)
   function fareForTrip(t) {
     // positions from Granville Island
-    const order = { 2: 0, 3: 1, 4: 2 };
+    const order = {"Granville Island": 0, "Hornby": 1, "The Village": 2  };
     const fromPos = order[t.from_id] ?? 0;
     const toPos = order[t.to_id] ?? 1;
     const stops = Math.abs(toPos - fromPos) || 1;
@@ -231,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // init
-  populateDockSelects();
-  renderTrips(); // show trips leaving Granville Island by default
   initializeData();
+  populateDockSelects();
+  renderTrips(); 
 });
