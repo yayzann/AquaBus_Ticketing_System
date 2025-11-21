@@ -1,5 +1,3 @@
--- AquaBus Ticketing System Database Schema (PHP-compatible)
-
 CREATE TABLE Employee (
   EmployeeID CHAR(50) PRIMARY KEY,
   FullName CHAR(100) NOT NULL,
@@ -53,8 +51,8 @@ CREATE TABLE Trip (
   Fare DECIMAL(10,2) NOT NULL,
   EmployeeID CHAR(50) NULL,
   BoatID CHAR(50) NOT NULL,
-  FromDock CHAR(50) NOT NULL,       -- renamed from DepartDockID
-  ToDock CHAR(50) NOT NULL,         -- renamed from ArriveDockID
+  FromDock CHAR(50) NOT NULL,
+  ToDock CHAR(50) NOT NULL,
   SupervisorID CHAR(50) NULL,
   FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
     ON UPDATE CASCADE ON DELETE SET NULL,
