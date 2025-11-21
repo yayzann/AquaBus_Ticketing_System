@@ -1,7 +1,8 @@
 <?php
 header('Content-Type: application/json');
 
-function getConnection() {
+function getConnection()
+{
   $servername = "localhost";
   $username = "root";
   $password = "";
@@ -15,10 +16,11 @@ function getConnection() {
   return $conn;
 }
 
-function getTrips() {
+function getTrips()
+{
   $conn = getConnection();
 
-  $query = "SELECT TripID, BoatName, FromDock, ToDock, `Date`, DepartTime, ArriveTime, Fare FROM Trip";
+  $query = "SELECT TripID, BoatID, FromDock, ToDock, `Date`, DepartTime, ArriveTime, Fare FROM Trip";
   $result = $conn->query($query);
 
   $trips = [];
@@ -26,7 +28,7 @@ function getTrips() {
     while ($row = $result->fetch_assoc()) {
       $trips[] = [
         "trip_id" => $row["TripID"],
-        "boat_id" => $row["BoatName"],
+        "boat_id" => $row["BoatID"], 
         "from_id" => $row["FromDock"],
         "to_id" => $row["ToDock"],
         "date" => $row["Date"],
@@ -36,11 +38,13 @@ function getTrips() {
       ];
     }
   }
+
   $conn->close();
   return $trips;
 }
 
-function getDocks() {
+function getDocks()
+{
   $conn = getConnection();
 
   $query = "SELECT DockID, DockName FROM Dock";
@@ -55,11 +59,13 @@ function getDocks() {
       ];
     }
   }
+
   $conn->close();
   return $docks;
 }
 
-function getBoats() {
+function getBoats()
+{
   $conn = getConnection();
 
   $query = "SELECT BoatID, BoatName FROM Boat";
@@ -74,15 +80,14 @@ function getBoats() {
       ];
     }
   }
+
   $conn->close();
   return $boats;
 }
 
-// Return all data as JSON
 echo json_encode([
   "docks" => getDocks(),
   "boats" => getBoats(),
   "trips" => getTrips()
 ]);
 ?>
-

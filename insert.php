@@ -1,41 +1,54 @@
 <?php
 $servername = "localhost";
-$username = "root"; // your username
-$password = "root"; // your password
+$username = "root";
+$password = "";
 $database = "aquabus";
-$valid = false;
 
-// server site input available trip and display it to user
-// Getting values
-$TripID = $_POST["TripID"];
-$BoatID = $_POST["BoatID"];
-$BoatName = $_POST["BoatName"];
-$DepartDockID = $_POST["DepartDockID"];
-$ArriveDockID = $_POST["ArriveDockID"];
-$Date = $_POST["Date"];
-$DepartTime = $_POST["DepartTime"];
-$ArriveTime = $_POST["ArriveTime"];
-$Fare = $_POST["Fare"];
+$TripID = $_POST["TripID"] ?? null;
+$BoatID = $_POST["BoatID"] ?? null;
+$BoatName = $_POST["BoatName"] ?? null;
+$DepartDockID = $_POST["DepartDockID"] ?? null;
+$ArriveDockID = $_POST["ArriveDockID"] ?? null;
+$Date = $_POST["Date"] ?? null;
+$DepartTime = $_POST["DepartTime"] ?? null;
+$ArriveTime = $_POST["ArriveTime"] ?? null;
+$Fare = $_POST["Fare"] ?? null;
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-} else {
-  echo "Connection Succesful! <br>";
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// construct the query
-$query = "INSERT INTO Trip (TripID, Date, DepartTime, ArriveTime, Fare, BoatID, DepartDockID, ArriveDockID) VALUES('$TripID','$Date','$DepartTime','$ArriveTime','$Fare','$BoatID','$DepartDockID','$ArriveDockID')";
+$TripID = intval($TripID);
+$BoatID = intval($BoatID);
+$DepartDockID = intval($DepartDockID);
+$ArriveDockID = intval($ArriveDockID);
+$Fare = floatval($Fare);
 
-// Execute the query
+$query = "INSERT INTO Trip 
+(TripID, Date, DepartTime, ArriveTime, Fare, BoatID, FromDock, ToDock) 
+VALUES ('$TripID','$Date','$DepartTime','$ArriveTime','$Fare','$BoatID','$DepartDockID','$ArriveDockID')";
+
 if ($conn->query($query) === TRUE) {
-  echo "New record created successfully!";
+    $msg = "Trip #$TripID added successfully!";
 } else {
-  echo "Error: " . $conn->error;
+    $msg = "Error: " . $conn->error;
 }
 
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Add Trip • Aquabus</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-5">
+<div class="container">
+    <div class="alert alert-info"><?= $msg ?></div>
+    <a href="insert.html" class="btn btn-primary">Back to Add Trip</a>
+</div>
+</body>
+</html>
