@@ -3,7 +3,7 @@
 function getConnection(){
   $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "boattrip";
 
 
@@ -19,22 +19,9 @@ return $conn;
 function DisplayTrip(){
 
 $conn =  getConnection();
-//if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  //$FromDock=$_POST["FromDock"] ;
-  //$ToDock=$_POST["ToDock"];
-//}else{
+
 $FromDock=$_POST["FromDock"] ?? "All";
 $ToDock=$_POST["ToDock"] ?? "All";
-
-
-//select from SQL 
-//$stmt = $conn->prepare("SELECT TripID, BoatName, FromDock, ToDock, Date, DepartTime, ArriveTime, Fare
-//FROM AvailableTrip
-//WHERE ToDock = ?");
-//$stmt->bind_param("s", $ToDock); // "s" = string
-//$stmt->execute();
-//$result = $stmt->get_result();
-
 
 if($ToDock == "All"){
   $query = "SELECT TripID , BoatName , FromDock , ToDock , `Date`
@@ -99,5 +86,6 @@ if ($result->num_rows > 0){
 
 }
 }
+
 
 ?>
