@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // fare rule: Hornby = 4, The Village = 8 (2 stops)
   function fareForTrip(t) {
     // positions from Granville Island
-    const order = {"Granville Island": 0, "Hornby": 1, "The Village": 2  };
+    const order = {"1": 0, "2": 1, "3": 2}; // Use dock IDs
     const fromPos = order[t.from_id] ?? 0;
     const toPos = order[t.to_id] ?? 1;
     const stops = Math.abs(toPos - fromPos) || 1;

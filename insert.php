@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root"; // your username
 $password = "root"; // your password
-$database = "boattrip";
+$database = "aquabus";
 $valid = false;
 
 // server site input available trip and display it to user
@@ -10,8 +10,8 @@ $valid = false;
 $TripID = $_POST["TripID"];
 $BoatID = $_POST["BoatID"];
 $BoatName = $_POST["BoatName"];
-$DepartDockID = $_POST["FromDock"];
-$ArriveDockID = $_POST["ToDock"];
+$DepartDockID = $_POST["DepartDockID"];
+$ArriveDockID = $_POST["ArriveDockID"];
 $Date = $_POST["Date"];
 $DepartTime = $_POST["DepartTime"];
 $ArriveTime = $_POST["ArriveTime"];
@@ -39,59 +39,3 @@ if ($conn->query($query) === TRUE) {
 
 $conn->close();
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boat Trip</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Boat Trip</h1>
-        <form method="post">
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="form-label" for="tripId">Trip ID</label>
-                    <input class="form-control" type="text" id="tripId" name="TripID" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="boatId">Boat ID</label>
-                    <input class="form-control" type="text" id="boatId" name="BoatID" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="boatName">Boat Name</label>
-                    <input class="form-control" type="text" id="boatName" name="BoatName" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="fromDock">From Dock</label>
-                    <input class="form-control" type="text" id="fromDock" name="FromDock" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="toDock">To Dock</label>
-                    <input class="form-control" type="text" id="toDock" name="ToDock" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="date">Date</label>
-                    <input class="form-control" type="date" id="date" name="Date" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="departTime">Departure Time</label>
-                    <input class="form-control" type="time" id="departTime" name="DepartTime" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="arriveTime">Arrival Time</label>
-                    <input class="form-control" type="time" id="arriveTime" name="ArriveTime" required />
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="fare">Fare</label>
-                    <input class="form-control" type="number" id="fare" name="Fare" required />
-                </div>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</body>
-</html>
-

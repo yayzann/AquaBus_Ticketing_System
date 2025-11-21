@@ -5,7 +5,7 @@ function getConnection() {
   $servername = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "boattrip";
+  $dbname = "aquabus";
 
   $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -18,7 +18,7 @@ function getConnection() {
 function getTrips() {
   $conn = getConnection();
 
-  $query = "SELECT TripID, BoatName, FromDock, ToDock, `Date`, DepartTime, ArriveTime, Fare FROM AvailableTrip";
+  $query = "SELECT TripID, BoatName, FromDock, ToDock, `Date`, DepartTime, ArriveTime, Fare FROM Trip";
   $result = $conn->query($query);
 
   $trips = [];

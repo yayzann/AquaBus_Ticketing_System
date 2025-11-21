@@ -1,13 +1,10 @@
--- AquaBus Ticketing System Database Schema
--- Note: Mostly taken from the assignment.
--- TODO: Add sample data for boats, docks, and routes.
--- TODO: Verify Approves table structure.
+-- AquaBus Ticketing System Database Schema (PHP-compatible)
 
 CREATE TABLE Employee (
   EmployeeID CHAR(50) PRIMARY KEY,
   FullName CHAR(100) NOT NULL,
   Age INT,
-  SupervisorID CHAR(50),
+  SupervisorID CHAR(50) NULL,
   FOREIGN KEY (SupervisorID) REFERENCES Employee(EmployeeID)
     ON UPDATE CASCADE ON DELETE SET NULL
 );
@@ -17,7 +14,7 @@ CREATE TABLE Driver (
   LicenseNo CHAR(50) UNIQUE,
   LicenseValidUntil DATE NOT NULL,
   FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
-    ON UPDATE CASCADE ON DELETE SET NULL
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Boat (
@@ -40,32 +37,33 @@ CREATE TABLE Route (
 CREATE TABLE Route_Stop (
   RouteID CHAR(50),
   SeqNo INT,
-  DockID CHAR(50),
+  DockID CHAR(50) NULL,
   PRIMARY KEY (RouteID, SeqNo),
   FOREIGN KEY (DockID) REFERENCES Dock(DockID)
     ON UPDATE CASCADE ON DELETE SET NULL,
   FOREIGN KEY (RouteID) REFERENCES Route(RouteID)
-    ON UPDATE CASCADE ON DELETE SET NULL
+    ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Trip (
   TripID CHAR(50) PRIMARY KEY,
-  DepartTime TIME,
-  ArriveTime TIME,
-  Status BOOLEAN,
-  EmployeeID CHAR(50),
-  BoatID CHAR(50),
-  DepartDockID CHAR(50),
-  ArriveDockID CHAR(50),
-  SupervisorID CHAR(50),
+  Date DATE NOT NULL,
+  DepartTime TIME NOT NULL,
+  ArriveTime TIME NOT NULL,
+  Fare DECIMAL(10,2) NOT NULL,
+  EmployeeID CHAR(50) NULL,
+  BoatID CHAR(50) NOT NULL,
+  FromDock CHAR(50) NOT NULL,       -- renamed from DepartDockID
+  ToDock CHAR(50) NOT NULL,         -- renamed from ArriveDockID
+  SupervisorID CHAR(50) NULL,
   FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
     ON UPDATE CASCADE ON DELETE SET NULL,
   FOREIGN KEY (BoatID) REFERENCES Boat(BoatID)
-    ON UPDATE CASCADE ON DELETE SET NULL,
-  FOREIGN KEY (DepartDockID) REFERENCES Dock(DockID)
-    ON UPDATE CASCADE ON DELETE SET NULL,
-  FOREIGN KEY (ArriveDockID) REFERENCES Dock(DockID)
-    ON UPDATE CASCADE ON DELETE SET NULL,
+    ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (FromDock) REFERENCES Dock(DockID)
+    ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (ToDock) REFERENCES Dock(DockID)
+    ON UPDATE CASCADE ON DELETE CASCADE,
   FOREIGN KEY (SupervisorID) REFERENCES Employee(EmployeeID)
     ON UPDATE CASCADE ON DELETE SET NULL
 );
@@ -86,7 +84,7 @@ CREATE TABLE Booking (
   Status BOOLEAN,
   Price INT,
   PurchaseTS CHAR(50),
-  TripID CHAR(50),
+  TripID CHAR(50) NULL,
   FOREIGN KEY (TripID) REFERENCES Trip(TripID)
     ON UPDATE CASCADE ON DELETE SET NULL
 );
@@ -97,7 +95,7 @@ CREATE TABLE Passenger (
   Email CHAR(50) UNIQUE,
   Phone CHAR(10),
   AgeGroup INT,
-  BookingID CHAR(50),
+  BookingID CHAR(50) NULL,
   FOREIGN KEY (BookingID) REFERENCES Booking(BookingID)
     ON UPDATE CASCADE ON DELETE SET NULL
 );
