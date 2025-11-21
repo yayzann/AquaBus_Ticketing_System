@@ -201,10 +201,33 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Current demo bookings:", bookings);
   });
 
+  
+
   // filter form
   searchForm.addEventListener("submit", function (e) {
     e.preventDefault();
     renderTrips();
+  });
+
+  // Contact form handling
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("contactName").value.trim();
+    const email = document.getElementById("contactEmail").value.trim();
+    const message = document.getElementById("contactMessage").value.trim();
+
+    if (!name || !email || !message) {
+      alert("Please fill all fields with valid info.");
+      return;
+    }
+
+    // Show success toast
+    document.getElementById("toast").textContent = "Thank you. Message sent.";
+    toast.show();
+
+    // Reset form
+    document.getElementById("contactForm").reset();
   });
 
   // init
