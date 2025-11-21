@@ -3,8 +3,6 @@ $servername = "localhost";
 $username = "root"; // your username
 $password = ""; //your password
 $database = "boattrip";
-$valid = false;
-
 
 
 $Name=$_POST["name"];
@@ -29,4 +27,5 @@ echo "New record created successfully!";
 echo "Error: " . $conn->error;
 } $conn->close();
 ?>
+
 
