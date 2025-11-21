@@ -169,7 +169,7 @@ include 'DisplayTrip.php';
     </form>
        </div>
         </div>
-      </div>'
+      </div>
                 <!--add php here-->
                 
                   <!--<tr><td colspan="8" class="text-center text-secondary py-4">
@@ -232,18 +232,18 @@ include 'DisplayTrip.php';
         <div class="card-body">
           <h2 class="h4 mb-3">Contact us</h2>
           <p class="mb-3">Feel free to drop us a message below!</p>
-          <form id="contactForm" class="row g-3">
+          <form id="contactForm" class="row g-3" method="Post" action="message.php">
             <div class="col-md-6">
               <label class="form-label" for="contactName">Name</label>
-              <input class="form-control" id="contactName" placeholder="First, Last" name="Name"/>
+              <input class="form-control" id="contactName " name="name" placeholder="First, Last" />
             </div>
             <div class="col-md-6">
               <label class="form-label" for="contactEmail">Email</label>
-              <input class="form-control" id="contactEmail" type="email" name="Email" placeholder="myemail@email.com" />
+              <input class="form-control" id="contactEmail" type="email" name="email"  placeholder="myemail@email.com" />
             </div>
             <div class="col-12">
               <label class="form-label" for="contactMessage">Message</label>
-              <textarea class="form-control" id="contactMessage" rows="4" name="Message" placeholder="Your message:"></textarea>
+              <textarea class="form-control" id="contactMessage" rows="4" name="message" placeholder="Your message:"></textarea>
             </div>
             <div class="col-12 d-grid d-sm-block">
               <button type="submit" class="btn btn-primary">Send message</button>
